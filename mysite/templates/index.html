@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Random Porn!</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'myStyle.css'%}">
+    <meta name="description" content="RandoPorno is the best site for generating random porn videos and pornstars! 
+    On RandoPorno, you can even pick a category to randomly generate a porn video from! Can't decide what to watch? 
+    Pick random porn, sex tapes, xxx movies, and pornstars to fap to completely for free!">
+    <meta name="keywords" content="porn videos, sex, porno, free porn, porn tube, streaming porn, porn, xxx, pornstar, 
+    pornstars, random porn, randoporno, fuq, fuq.com, porn randomizer, porn generator, porn categories">
+
+</head>
+<body>
+
+<div class='box'>
+<h1>RandoPorno</h1>
+
+<h4>RandoPorno is completely free to use, but is not free to run. If you enjoy this site, please consider turning off adblock or interacting with ads to keep this site running!</h4>
+<h4>Go to <a href='fuq' target="_blank">fuq.com</a> for a full list of categories!</h4>
+
+<div class="row">
+
+    <div class="col-6">
+    <form target='_blank' action='random_porn' method='POST'>
+        {% csrf_token %}
+        <button class='main-btn' type='submit'>Completely Random!</button>
+    </form>
+    </div>
+
+    <div class="col-6">
+    <form target='_blank' action='random_star' method='POST'>
+        {% csrf_token %}
+        <button class='main-btn' type='submit'>Random Pornstar!</button>
+    </form>
+    </div>
+</div>
+
+<form class='cat' target='_blank' action='from_category' method='POST'>
+    {% csrf_token %}
+    <label for="my_datalist">From Category:</label>
+    <input list="my_datalist" name="my_categories">
+    <datalist id='my_datalist'>
+        {% for i in categories%}
+            <option value={{i}}>
+        {%endfor%}
+    </datalist>
+    <button id='generate' type='submit'>Generate!</button>
+</form>
+</div>
+
+
+</body>
+</html>
